@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="项目一：音乐:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/_jar</output-path>
+    <root id="root">
+      <element id="archive" name="项目一：音乐.jar">
+        <element id="module-output" name="项目一：音乐" />
+      </element>
+      <element id="library" level="project" name="jl-1.0.1" />
+    </root>
+  </artifact>
+</component>

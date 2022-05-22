@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: ShowLove
+Class-Path: jl-1.0.1.jar
+
