@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <!-- 定义查询语句返回类型 别名 -->
+    <typeAliases>
+        <!--
+            可以指定一个类型一个自定义别名
+            type：自定义类型的全限定名称
+            alisa：别名（短小容易记忆的）
+        -->
+<!--        <typeAlias type="com.yang.Domain.student" alias="studnet"/>-->
+
+        <!--
+            第二种方式：
+            《package》  name 是报名，这个包中的所有类，类名就是别名（类名不区分大小写）
+
+        -->
+        <package name="com.yang.Domain"/>
+    </typeAliases>
+
+    <environments default="Mysql">
+        <environment id="Mysql">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/ajax?useSSL=false&amp;serverTimezone=UTC"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="com/yang/Domain/dao/StudenDao.xml"/>
+    </mappers>
+</configuration>

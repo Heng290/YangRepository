@@ -1,0 +1,41 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.Domain.dao.StudneDao">
+
+    <!--
+        parameterType 是用来表示 dao中方法参数的数据类型
+                它的值 是别名或者是mybatis定义的别名 或者是全限定名称
+          不是强制的，mybatis通过反射机制可发现参数的类型
+
+         #{id} 名字自定义
+    -->
+    <select id="selectStudne" resultType="com.yang.Domain.student">
+        select * from  student where id = #{id}
+    </select>
+    <!-- 多个参数  使用的 @param -->
+    <select id="selectStudne2"  resultType="com.yang.Domain.student">
+        select * from  student where id = #{myid} or name = #{myname}
+    </select>
+
+    <!-- 多个参数  使用的 java对象 传递
+        使用对象语言：#{属性名，javaType=雷兴明，jdbcType=数据类型}  完整的  很少用
+        javaType：指在java 中的数据类型
+        jdbcType：在数据库中的数据类型
+
+        简化的方式：#{属性名} javaType  jdbcType 反射可以获取
+     -->
+    <select id="selectStudne3"  resultType="com.yang.Domain.student">
+        select * from  student where age = #{page} or name = #{pname}
+    </select>
+
+    <!-- 按参数位置 获取参数-->
+    <select id="selectStudne4"  resultType="com.yang.Domain.student">
+        select * from  student where age = #{arg1} or name = #{arg0}
+    </select>
+
+    <!-- 使用 map 的 key 获取参数-->
+    <select id="selectStudne5"  resultType="com.yang.Domain.student">
+        select * from  student where age = #{mage} or name = #{mname}
+    </select>
+</mapper>

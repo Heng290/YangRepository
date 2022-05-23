@@ -1,0 +1,72 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.Domain.dao.StudneDao">
+    <!-- 定义 sql的片段 -->
+    <sql id="studentsql">
+        select id,name,age,email from student
+    </sql>
+
+    <!-- if
+        <if test=“ 使用参数java对象的属性值作为判断条件，语法： 属性名=***"
+    -->
+    <select id="selcetIF" resultType="com.yang.Domain.student">
+--         select * from student
+        <include refid="studentsql"/><!-- 使用代码片段 -->
+        where
+        <if test="name != null and name != '' ">
+            name = #{name}
+        </if>
+        <if test="age > 0">
+            or age > #{age}
+        </if>
+
+    </select>
+
+    <!--  where
+        <where> <if></if>.... </where>     -->
+    <select id="selcetWhere" resultType="com.yang.Domain.student">
+        select * from student
+        <where>
+            <if test="name != null and name != '' ">
+                name = #{name}
+            </if>
+            <if test="age > 0">
+                or age > #{age}
+            </if>
+        </where>
+    </select>
+
+
+    <!--
+        foreach 使用 一
+            collection:用来表示 借口中方法参数的类型  如果是数组 使用arra
+            item：自定义的 表示数组或者集合成员的变量的
+            open：循环开始的字符
+            close：循环结束时的字符
+            separator：集合成员的分割符
+    -->
+    <select id="selcetForeach1" resultType="com.yang.Domain.student">
+        select * from student where id in 
+        <foreach collection="list" item="myid" open="(" close=")" separator=",">
+            #{myid}
+        </foreach>
+    </select>
+
+    <!--
+        foreach 第二种方法
+
+    -->
+
+    <select id="selcetForeach2" resultType="com.yang.Domain.student">
+        select * from student where id in
+        <foreach collection="list" item="stu" open="(" close=")" separator=",">
+            #{stu.id}
+        </foreach>
+    </select>
+
+
+    <select id="selcetPageHlper" resultType="com.yang.Domain.student">
+        select * from student order by id
+    </select>
+</mapper>
